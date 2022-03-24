@@ -12,27 +12,19 @@ const { NotImplementedError } = require('../extensions/index.js');
  * 
  */
 function getSeason(date) {
-  //if (!date) return 'Unable to determine the time of year!';
+
   if (date == undefined) return 'Unable to determine the time of year!';
 
-  function getCorrectData(date) {
-    if (!date || date.toString() == 'Invalid Date') {
-      throw 'Invalid date!';
-    }
-  }
-
   try {
-    getCorrectData(date);
     const month = date.toDateString().split(' ')[1];
     switch (month) {
-      case "Dec": case "Jan": case "Feb": return "winter"; break;
-      case "Mar": case "Apr": case "May": return "spring"; break;
-      case "Jun": case "Jul": case "Aug": return "summer"; break;
-      case "Sep": case "Oct": case "Nov": return "autumn"; break;
+      case "Dec": case "Jan": case "Feb": return "winter"; 
+      case "Mar": case "Apr": case "May": return "spring"; 
+      case "Jun": case "Jul": case "Aug": return "summer"; 
+      case "Sep": case "Oct": case "Nov": return "autumn"; 
     };
-
   } catch (e) {
-    console.error(e);
+    throw new Error('Invalid date!');
   }
 }
 
