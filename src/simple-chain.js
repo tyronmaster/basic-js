@@ -10,8 +10,10 @@ const chainMaker = {
   },
 
   addLink(value) {
-    if (!this.chain) {
-      this.chain = [`( ${value} )`];
+    if (!this.chain) this.chain = [];
+
+    if (typeof value === 'undefined') {
+      this.chain.push('(  )');
     } else {
       this.chain.push(`( ${value} )`);
     }
@@ -20,22 +22,34 @@ const chainMaker = {
 
   removeLink(position) {
 
-    if ((position - 1) >= 0 && (position - 1) < this.getLength() && typeof (position) == 'number') {
-      this.chain.splice(position - 1, 1);
+    if (position > 0 && position <= this.getLength() && Number.isInteger(position)) {
+      this.chain.splice((position - 1), 1);
     } else {
-      throw new Error('You can\'t remove incorrect link!');
+      this.chain = null;
+      throw new Error("You can\'t remove incorrect link!");
     }
 
+    /*
+     try {
+       if ((position - 1) >= 0 && (position - 1) < this.getLength()) {
+         this.chain.splice(position - 1, 1);
+       }
+     } catch (err) {
+       throw new Error("You can\'t remove incorrect link!");
+     }
+     */
     return this;
   },
 
   reverseChain() {
-    this.chain.reverse();
+    if (this.chain) this.chain.reverse();
     return this;
   },
 
   finishChain() {
-    return this.chain.join("~~");
+    let result = `${this.chain.join("~~")}`;
+    this.chain = null;
+    return result;
   }
 };
 
