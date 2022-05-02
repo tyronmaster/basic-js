@@ -20,7 +20,7 @@ const { NotImplementedError } = require('../extensions/index.js');
  * 
  */
 class VigenereCipheringMachine {
-  constructor(bool){
+  /*constructor(bool){
     if(arguments.length == 0 || bool == "true") this.machineType = "direct";
     if(bool == "false") this.machineType = "reverse";
     this.alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -84,7 +84,7 @@ class VigenereCipheringMachine {
     }
     if(this.machineType == "reverse") return decrMessage.split('').reverse().join('');
     return decrMessage;
-  }
+  }*/
 }
 
 module.exports = {
